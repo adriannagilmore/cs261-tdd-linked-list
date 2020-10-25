@@ -5,8 +5,26 @@
 # If you can't figure it out recursively, use a loop. (But then refactor
 # your implementation into a recursive one!)
 # Your implementation should pass the tests in test_sorted_list.py.
-# YOUR NAME
+# Adrianna Gilmore
 
 class LinkedList:
 
-    pass
+    def __init__(self, value = None):
+        self.data = []
+        self.value = value
+        self.next = self
+        self.prev = self
+    
+    def is_sentinel(self):
+        if self.value == None:
+            return True
+        else: 
+            return False
+
+    def is_empty(self):
+        if self.prev == self and self.next == self:
+            return True
+        else: 
+            return False
+
+    def is_last(self):
