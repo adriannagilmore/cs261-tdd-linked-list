@@ -10,10 +10,11 @@
 class LinkedList:
 
     def __init__(self, value = None):
-        self.data = []
+        self.node = []
         self.value = value
         self.next = self
         self.prev = self
+        self.length = 0
     
     def is_sentinel(self):
         if self.value == None:
@@ -28,3 +29,21 @@ class LinkedList:
             return False
 
     def is_last(self):
+        if self.is_sentinel():
+            return True
+        else:
+            return False
+
+    def last(self):
+        if self.is_last():
+            return self
+
+    def append(self, newNode):
+        if self.is_empty():
+            self.next = newNode
+            self.prev = newNode
+        if newNode.is_empty():
+            newNode.prev = self
+            newNode.next = self
+        self.length += 1
+
