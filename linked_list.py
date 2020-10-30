@@ -17,33 +17,67 @@ class LinkedList:
         self.length = 0
     
     def is_sentinel(self):
-        if self.value == None:
-            return True
-        else: 
-            return False
+        return self.value == None
 
     def is_empty(self):
-        if self.prev == self and self.next == self:
-            return True
-        else: 
-            return False
+        return self.prev == self and self.next == self
 
     def is_last(self):
-        if self.is_sentinel():
-            return True
-        else:
-            return False
+        nextNode = self.next
+        return nextNode.is_sentinel()
 
     def last(self):
-        if self.is_last():
-            return self
+        return self.prev
 
     def append(self, newNode):
-        if self.is_empty():
-            self.next = newNode
-            self.prev = newNode
-        if newNode.is_empty():
-            newNode.prev = self
+        if self.is_sentinel():
+            last = self.last()
+            last.next = newNode
+            newNode.prev = last
             newNode.next = self
-        self.length += 1
+            self.prev = newNode
+        elif self.is_last():
+            newNode.next = self.next
+            newNode.prev = self
+            self.next = newNode
+            sentinel = newNode.next
+            sentinel.prev = newNode
+        else:
+            self.next.append(newNode)
+        
+    def delete(self):
+        if self.is_sentinel():
+            pass
+        else:
+            prevNode = self.prev
+            nextNode = self.next
+            prevNode.next = nextNode
+            nextNode.prev = prevNode
+
+    def insert(self, newNode):
+        nextNode = self.next
+        newNode.prev = self
+        newNode.next = nextNode
+        nextNode.prev = newNode
+        self.next = newNode
+
+    def at(self, number):
+        if number == 0 and self.is_sentinel():
+            foundNode = self
+        else:
+            foundNode = self
+            i = 1
+            while i <= number:
+                foundNode = foundNode.next 
+                i += 1        
+        return foundNode
+
+    def search(self, value):
+        
+
+        
+                    
+
+
+            
 
