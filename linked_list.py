@@ -44,6 +44,7 @@ class LinkedList:
             sentinel.prev = newNode
         else:
             self.next.append(newNode)
+        self.length += 1
         
     def delete(self):
         if self.is_sentinel():
@@ -53,6 +54,7 @@ class LinkedList:
             nextNode = self.next
             prevNode.next = nextNode
             nextNode.prev = prevNode
+        self.length -= 1
 
     def insert(self, newNode):
         nextNode = self.next
@@ -60,6 +62,7 @@ class LinkedList:
         newNode.next = nextNode
         nextNode.prev = newNode
         self.next = newNode
+        self.length += 1
 
     def at(self, number):
         if number == 0 and self.is_sentinel():
@@ -73,6 +76,30 @@ class LinkedList:
         return foundNode
 
     def search(self, value):
+        i = 0
+        node = self
+        while i <= self.length:
+            if value == node.value:
+                return node
+            else:
+                i += 1
+                node = node.next
+        return None
+
+    def insert_in_order(self, node):
+        if self.is_empty():
+            self.append(node)
+        else:
+            i = 1
+            checkNode = self.next
+            while i <= self.length:
+                if node.value < checkNode.value:
+                    checkNode.insert(node)
+                else:
+                    checkNode = checkNode.next
+            self.append(node)
+        self.length += 1
+
         
 
         
