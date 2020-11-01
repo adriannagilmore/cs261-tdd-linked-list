@@ -93,8 +93,11 @@ class LinkedList:
             i = 1
             checkNode = self.next
             while i <= self.length:
-                if node.value < checkNode.value:
-                    checkNode.insert(node)
+                i += 1
+                if  checkNode.value != None:
+                    if node.value < checkNode.value:
+                        previousNode = checkNode.prev
+                        previousNode.insert(node)
                 else:
                     checkNode = checkNode.next
             self.append(node)
